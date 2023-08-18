@@ -1,6 +1,6 @@
 ---
 - name: Install PostgreSQL
-  hosts: your_target_servers
+  hosts: all
   become: true  # Elevate privileges to perform installation tasks
 
   tasks:
