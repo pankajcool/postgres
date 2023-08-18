@@ -1,0 +1,24 @@
+---
+- name: Install PostgreSQL
+  hosts: your_target_servers
+  become: true  # Elevate privileges to perform installation tasks
+
+  tasks:
+    - name: Update package cache
+      package_facts:
+        manager: auto
+
+    - name: Install PostgreSQL and related packages
+      package:
+        name:
+          - postgresql
+          - postgresql-server
+          - postgresql-contrib
+          - postgresql-devel  # Optional, for development headers
+        state: present
+
+    - name: Start and enable PostgreSQL service
+      systemd:
+        name: postgresql
+        state: started
+        enabled: yes
